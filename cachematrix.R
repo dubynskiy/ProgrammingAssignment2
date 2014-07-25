@@ -31,12 +31,17 @@ makeCacheMatrix = function(x = matrix()) {
 ## skips the computation. Otherwise, it calculates the inverse of 'x' and sets 
 ## the value of inverse of 'x' in the cache via the setInverse function.
 cacheSolve = function(x, ...) {
-        # return a matrix that is the inverse of 'x'
+        
     m = x$getInverse()
+    
+    # check if the cache of the inverse exist
     if(!is.null(m)) {
         message("getting cached data")
         return(m)
     }
+    
+    # if cache does not exist, computes inverse of 'x' and sets the 
+    # value of inverse of 'x' in the cache 
     data = x$get()
     m = solve(data, ...)
     x$setInverse(m)
